@@ -1,0 +1,29 @@
+- name: Disable database strict mode
+  lineinfile:
+    name: /etc/my.cnf.d/mariadb-server.cnf
+    state: present
+    regexp: '^{{ item }}'
+    insertafter: '^[mysqld]'
+    line: '{{ item }}'
+  with_items:
+    - 'innodb_file_per_table=1'
+    - 'sql-mode=""'
+    - 'lower_case_table_names=1'
+  - name: mariadb
+    service:
+      name: mariadb
+      state: restarted
+      enabled: yes
+
+  - name: librenms database
+    mysql_db:
+      name: librenms
+      encoding: utf8
+      collation: utf8_unicode_ci
+      state: present
+  - name: create librenms_db user, grant all privlieges
+    mysql_user:
+      name: librenms
+      password: changeme
+      priv: librenms.*
+      state: presnet

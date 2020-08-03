@@ -1,0 +1,6 @@
+cp /etc/php-fpm.d/www.conf /etc/php-fpm.d/librenms.conf
+  - name
+
+
+
+

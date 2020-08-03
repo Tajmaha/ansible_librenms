@@ -1,0 +1,11 @@
+  - name: copy snmpd
+    copy:
+      src: /opt/librenms/snmpd.conf.example
+      dst: /etc/snmp/snmpd.conf
+      remote_src: yes
+      mode: preserve
+  - name: curl snmp/distro
+    get_url:
+      url: https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp/distro
+      dest: /usr/bin/distro
+      mode: +x
