@@ -1,10 +1,10 @@
-  - name: firewalld
-    firewalld:
-      service: "{{ services }}"
-      zone: public
-      permanent: yes
-      vars:
-        service:
-          - http
-          - https
-      state: enabled
+- name: firewalld
+  firewalld:
+    service: "{{ services }}"
+    zone: public
+    permanent: yes
+    vars:
+      service:
+        - http
+        - https
+    state: enabled

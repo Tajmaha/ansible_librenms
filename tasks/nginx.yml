@@ -1,7 +1,7 @@
 Delete the server section from /etc/nginx/nginx.conf
 
-  - name: nginx
-    service:
-      name: nginx
-      state: restarted
-      enabled: yes
+- name: nginx
+  service:
+    name: nginx
+    state: restarted
+    enabled: yes

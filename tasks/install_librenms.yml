@@ -1,64 +1,64 @@
-  - name: create librenms system user
-    user:
-      name: librenms
-      shell: /usr/bin/bash
-      home: /opt/librenms
-      system: yes
-      state: present
-  - name: git clone
-    git:
-      repo: https://github.com/librenms/librenms.git
-      dst: /opt
-      clone: yes
-      update: yes
-  - name: chown librenms directory
-    file:
-      path: /opt/librenms
-      state: directory
-      recurse: yes
-      owner: librenms
-      group: librenms
-      mode: '0771'
-  - name: setfacl
-    acl:
-      path: "{{ acl }}"
-      entity: librenms
-      etype: group
-      permissions: rwx
-      recursive: yes
-      state: present
-      vars:
-        acl:
-        - /opt/librenms/rrd
-        - /opt/librenms/logs
-        - /opt/librenms/bootstrap/cache
-        - /opt/librenms/storage/
-        
-  - name: copy nonroot
-    copy:
-      src: /opt/librenms/librenms.nonroot.cron
-      dst: /etc/cron.d/librenms
-      remote_src: yes
-      mode: preserve
-  - name: copy logrotate
-    copy:
-      src: /opt/librenms/misc/librenms.logrotate
-      dst: /etc/logrotate.d/librenms
-      remote_src: yes
-      mode: preserve
-  - name: link
-    file:
-      src: /opt/librenms/lnms
-      dst: /usr/local/bin/lnms
-      state: link
-  - name: copy
-    copy:
-      src: /opt/librenms/misc/lnms-completion.bash
-      dst: /etc/bash_completion.d/
-      remote_src: yes
-      mode: preserve
-  - name: own config
-    file:
-      path: /opt/librenms/config.php
-      owner: librenms
-      group: librenms
+- name: create librenms system user
+  user:
+    name: librenms
+    shell: /usr/bin/bash
+    home: /opt/librenms
+    system: yes
+    state: present
+- name: git clone
+  git:
+    repo: https://github.com/librenms/librenms.git
+    dst: /opt
+    clone: yes
+    update: yes
+- name: chown librenms directory
+  file:
+    path: /opt/librenms
+    state: directory
+    recurse: yes
+    owner: librenms
+    group: librenms
+    mode: '0771'
+- name: setfacl
+  acl:
+    path: "{{ acl }}"
+    entity: librenms
+    etype: group
+    permissions: rwx
+    recursive: yes
+    state: present
+    vars:
+      acl:
+      - /opt/librenms/rrd
+      - /opt/librenms/logs
+      - /opt/librenms/bootstrap/cache
+      - /opt/librenms/storage/
+      
+- name: copy nonroot
+  copy:
+    src: /opt/librenms/librenms.nonroot.cron
+    dst: /etc/cron.d/librenms
+    remote_src: yes
+    mode: preserve
+- name: copy logrotate
+  copy:
+    src: /opt/librenms/misc/librenms.logrotate
+    dst: /etc/logrotate.d/librenms
+    remote_src: yes
+    mode: preserve
+- name: link
+  file:
+    src: /opt/librenms/lnms
+    dst: /usr/local/bin/lnms
+    state: link
+- name: copy
+  copy:
+    src: /opt/librenms/misc/lnms-completion.bash
+    dst: /etc/bash_completion.d/
+    remote_src: yes
+    mode: preserve
+- name: own config
+  file:
+    path: /opt/librenms/config.php
+    owner: librenms
+    group: librenms
