@@ -1,4 +1,10 @@
-Delete the server section from /etc/nginx/nginx.conf
+- template:
+  src: /templates/nginx.conf
+  dest: /etc/nginx/nginx.conf
+
+- template:
+  src: /templates/nginx-librenms.conf
+  dest: /etc/nginx/conf.d/librenms.conf
 
 - name: nginx
   service:

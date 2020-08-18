@@ -1,2 +1,5 @@
-cp /etc/php-fpm.d/www.conf /etc/php-fpm.d/librenms.conf
-  - name
+# cp /etc/php-fpm.d/www.conf /etc/php-fpm.d/librenms.conf
+
+- template:
+  src: /templates/php-librenms.conf
+  dest: /etc/php-fpm.d/librenms.conf
