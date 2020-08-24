@@ -34,7 +34,7 @@
       - /opt/librenms/bootstrap/cache
       - /opt/librenms/storage/
       
-- name: copy nonroot
+- name: copy cron
   copy:
     src: /opt/librenms/librenms.nonroot.cron
     dst: /etc/cron.d/librenms
@@ -51,7 +51,7 @@
     src: /opt/librenms/lnms
     dst: /usr/local/bin/lnms
     state: link
-- name: copy
+- name: copy bash
   copy:
     src: /opt/librenms/misc/lnms-completion.bash
     dst: /etc/bash_completion.d/

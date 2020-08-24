@@ -8,22 +8,22 @@
   with_items:
     - 'innodb_file_per_table=1'
     - 'sql-mode=""'
-    - 'lower_case_table_names=1'
-  - name: mariadb
-    service:
-      name: mariadb
-      state: restarted
-      enabled: yes
+    - 'lower_case_table_names=0'
+- name: mariadb
+  service:
+    name: mariadb
+    state: restarted
+    enabled: yes
 
-  - name: librenms database
-    mysql_db:
-      name: librenms
-      encoding: utf8
-      collation: utf8_unicode_ci
-      state: present
-  - name: create librenms_db user, grant all privlieges
-    mysql_user:
-      name: librenms
-      password: changeme
-      priv: librenms.*
-      state: presnet
+- name: librenms database
+  mysql_db:
+    name: librenms
+    encoding: utf8
+    collation: utf8_unicode_ci
+    state: present
+- name: create librenms_db user, grant all privlieges
+  mysql_user:
+    name: librenms
+    password: changeme
+    priv: librenms.*
+    state: presnet

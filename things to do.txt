@@ -5,9 +5,5 @@ exit
 
 vi /etc/php.ini #timezone
 
-# after creating module http_fping.tt
-checkmodule -M -m -o http_fping.mod http_fping.tt
-semodule_package -o http_fping.pp -m http_fping.mod
-semodule -i http_fping.pp
 
-vi /etc/snmp/snmpd.conf
+
