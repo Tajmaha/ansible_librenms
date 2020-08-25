@@ -1,9 +1,0 @@
-su - librenms
-./scripts/composer_wrapper.php install --no-dev
-exit
-
-
-vi /etc/php.ini #timezone
-
-
-
