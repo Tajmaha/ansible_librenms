@@ -9,3 +9,5 @@
     cmd: /opt/scripts/composer_wrapper.php install --no-dev
     become: yes
     become_user: librenms
+    notify:
+    - php-fpm

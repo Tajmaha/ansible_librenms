@@ -1,0 +1,11 @@
+---
+- include: yum.yml
+- include: timezone.yml
+- include: librenms.yml
+- include: php.yml
+- include: mariadb.yml
+- include: nginx.yml
+- include: firewalld.yml
+- include: selinux.yml
+- include: fping.yml
+- include: snmp.yml
