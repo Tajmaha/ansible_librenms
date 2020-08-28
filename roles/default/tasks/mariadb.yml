@@ -24,6 +24,6 @@
 - name: create librenms_db user, grant all privlieges
   mysql_user:
     name: librenms
-    password: changeme
+    password: {{ db_password }}
     priv: librenms.*
-    state: presnet
+    state: present
