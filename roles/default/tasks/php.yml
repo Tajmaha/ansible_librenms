@@ -1,8 +1,9 @@
 # cp /etc/php-fpm.d/www.conf /etc/php-fpm.d/librenms.conf
 
-- template:
-  src: /templates/php-librenms.conf
-  dest: /etc/php-fpm.d/librenms.conf
+- name: php conf
+  template:
+    src: /templates/php-librenms.conf
+    dest: /etc/php-fpm.d/librenms.conf
 
 - name: PHP dependencies
   command:

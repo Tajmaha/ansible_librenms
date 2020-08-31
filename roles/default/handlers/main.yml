@@ -1,12 +1,11 @@
-handlers:  
-  - name: apply_se
+- name: apply_se
     command: restorecon -RFvv /opt/librenms
-  -name: snmpd
+- name: snmpd
     service:
       name: snmpd
       state: restarted
       enabled: yes
-  - name: php-fpm
+- name: php-fpm
     service:
       name: php-fpm
       state: restarted

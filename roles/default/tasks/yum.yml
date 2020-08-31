@@ -1,6 +1,7 @@
 - name: epel
-  yum: epel-release
-  state: latest
+  yum: 
+    name: epel-release
+    state: latest
 - name: yum install
   yum: 
     name: "{{ packages }}"

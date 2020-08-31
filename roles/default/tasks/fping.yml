@@ -1,7 +1,7 @@
-
-- template:
-  src: /templates/http_fping.tt
-  dst: /tmp/http_fping.tt
+- name: fping
+  template:
+    src: /templates/http_fping.tt
+    dst: /tmp/http_fping.tt
 - name: build SEmodule from template
   command:
     cmd: checkmodule -M -m -o http_fping.mod http_fping.tt
