@@ -24,6 +24,7 @@
 - name: create librenms_db user, grant all privlieges
   mysql_user:
     name: librenms
-    password: "{{ db_password }}"
-    priv: librenms.*
+    password: 'changeme'
+    priv: 'librenms.*:ALL'
     state: present
+    sql_log_bin: no

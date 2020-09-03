@@ -1,3 +1,9 @@
+- name: git clone
+  git:
+    repo: https://github.com/librenms/librenms.git
+    dest: /opt/librenms
+    clone: yes
+    update: yes
 - name: create librenms system user
   user:
     name: librenms
@@ -5,12 +11,6 @@
     home: /opt/librenms
     system: yes
     state: present
-- name: git clone
-  git:
-    repo: https://github.com/librenms/librenms.git
-    dst: /opt
-    clone: yes
-    update: yes
 - name: chown librenms directory
   file:
     path: /opt/librenms
@@ -21,40 +21,39 @@
     mode: '0771'
 - name: setfacl
   acl:
-    path: "{{ acl }}"
+    path: "{{ item }}"
     entity: librenms
     etype: group
     permissions: rwx
     recursive: yes
     state: present
-    vars:
-      acl:
-      - /opt/librenms/rrd
-      - /opt/librenms/logs
-      - /opt/librenms/bootstrap/cache
-      - /opt/librenms/storage/
+  loop:
+    - /opt/librenms/rrd
+    - /opt/librenms/logs
+    - /opt/librenms/bootstrap/cache
+    - /opt/librenms/storage/
       
 - name: copy cron
   copy:
     src: /opt/librenms/librenms.nonroot.cron
-    dst: /etc/cron.d/librenms
+    dest: /etc/cron.d/librenms
     remote_src: yes
     mode: preserve
 - name: copy logrotate
   copy:
     src: /opt/librenms/misc/librenms.logrotate
-    dst: /etc/logrotate.d/librenms
+    dest: /etc/logrotate.d/librenms
     remote_src: yes
     mode: preserve
 - name: link
   file:
     src: /opt/librenms/lnms
-    dst: /usr/local/bin/lnms
+    dest: /usr/local/bin/lnms
     state: link
 - name: copy bash
   copy:
     src: /opt/librenms/misc/lnms-completion.bash
-    dst: /etc/bash_completion.d/
+    dest: /etc/bash_completion.d/
     remote_src: yes
     mode: preserve
 - name: own config
@@ -62,3 +61,4 @@
     path: /opt/librenms/config.php
     owner: librenms
     group: librenms
+    state: touch

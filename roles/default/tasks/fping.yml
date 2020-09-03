@@ -1,10 +1,10 @@
 - name: fping
   template:
-    src: /templates/http_fping.tt
-    dst: /tmp/http_fping.tt
+    src: http_fping.tt
+    dest: /tmp/http_fping.tt
 - name: build SEmodule from template
   command:
-    cmd: checkmodule -M -m -o http_fping.mod http_fping.tt
+    cmd: checkmodule -M -m -o http_fping.mod /tmp/http_fping.tt
 - name: create SEmodule package
   command:
     cmd: semodule_package -o http_fping.pp -m http_fping.mod

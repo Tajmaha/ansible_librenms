@@ -1,10 +1,9 @@
 - name: firewalld
   firewalld:
-    service: "{{ services }}"
+    service: "{{ item }}"
     zone: public
     permanent: yes
-    vars:
-      services:
-        - http
-        - https
     state: enabled
+  loop:
+    - http
+    - https

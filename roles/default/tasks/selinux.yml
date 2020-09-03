@@ -3,25 +3,25 @@
     target: '/opt/librenms/html(/.*)?'
     setype: httpd_sys_content_t
     state: present
-    notify:
-      - apply_se
+  notify:
+    - apply_se
 - name: se logs
   sefcontext:
     target: '/opt/librenms/(logs|rrd|storage)(/.*)?'
     setype: httpd_sys_rw_content_t
     state: present
-    notify:
-      - apply_se
+  notify:
+    - apply_se
 - name: setsebool
   seboolean: 
-    name: httpd_can_sendmail=1
+    name: httpd_can_sendmail
     state: yes
-    persistant: yes
+    persistent: yes
 - name: setsebool
   seboolean:
-    name: httpd_execmem 1
+    name: httpd_execmem
     state: yes
-    persistant: yes
+    persistent: yes
 - name: chcon
   command:
     cmd: chcon -t httpd_sys_rw_content_t /opt/librenms/.env

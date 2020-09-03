@@ -2,13 +2,12 @@
 
 - name: php conf
   template:
-    src: /templates/php-librenms.conf
+    src: php-librenms.conf
     dest: /etc/php-fpm.d/librenms.conf
 
 - name: PHP dependencies
-  command:
-    cmd: /opt/scripts/composer_wrapper.php install --no-dev
-    become: yes
-    become_user: librenms
-    notify:
-    - php-fpm
+  command: /opt/librenms/scripts/composer_wrapper.php install --no-dev
+  become: yes
+  become_user: librenms
+  notify:
+  - php-fpm

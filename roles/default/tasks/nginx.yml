@@ -6,12 +6,12 @@
 
 - name: nginx conf
   template:
-    src: /templates/nginx.conf
+    src: nginx.conf
     dest: /etc/nginx/nginx.conf
 
 - name: nginx-librenms conf
   template:
-    src: /templates/nginx-librenms.conf
+    src: nginx-librenms.conf
     dest: /etc/nginx/conf.d/librenms.conf
 
 - name: restart nginx

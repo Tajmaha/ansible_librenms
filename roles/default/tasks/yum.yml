@@ -1,13 +1,13 @@
 - name: epel
-  yum: 
+  dnf: 
     name: epel-release
     state: latest
-- name: yum install
-  yum: 
-    name: "{{ packages }}"
+- name: yum install all
+  dnf: 
+    name: "{{ item }}"
     state: latest
-  vars:
-    packages:
+    update_cache: True
+  loop:
     - bash-completion
     - cronie
     - fping
@@ -17,7 +17,8 @@
     - mtr
     - net-snmp
     - net-snmp-utils
-    - nginx nmap
+    - nginx
+    - nmap
     - php-fpm
     - php-cli
     - php-common
