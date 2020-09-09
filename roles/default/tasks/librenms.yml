@@ -11,14 +11,6 @@
     home: /opt/librenms
     system: yes
     state: present
-- name: chown librenms directory
-  file:
-    path: /opt/librenms
-    state: directory
-    recurse: yes
-    owner: librenms
-    group: librenms
-    mode: '0771'
 - name: setfacl
   acl:
     path: "{{ item }}"
@@ -56,9 +48,18 @@
     dest: /etc/bash_completion.d/
     remote_src: yes
     mode: preserve
-- name: own config
+- name: create logfile
   file:
-    path: /opt/librenms/config.php
+    path: /opt/librenms/logs/librenms.log
+    state: touch
     owner: librenms
     group: librenms
-    state: touch
+  
+- name: chown librenms directory
+  file:
+    path: /opt/librenms
+    state: directory
+    recurse: yes
+    owner: librenms
+    group: librenms
+    mode: '0771'
