@@ -1,3 +1,5 @@
+Note: this is not yet complete. I'm still learning ansible, and this has many trial and error. Feel free to PR or submit issues, if there's a better way to structure this.
+
 # ansible_librenms
 CentOS 8 Ansible install of librenms
 
