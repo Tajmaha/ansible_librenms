@@ -7,3 +7,13 @@
   loop:
     - http
     - https
+- name: firewalld
+  firewalld:
+    service: "{{ item }}"
+    zone: public
+    permanent: yes
+    immediate: yes
+    state: enabled
+  loop:
+    - http
+    - https

@@ -1,5 +1,5 @@
 - name: librenms nginx
-  hosts: all
+  hosts: nms
   remote_user: root
 
   roles:
