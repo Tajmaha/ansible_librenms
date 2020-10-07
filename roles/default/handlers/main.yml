@@ -1,12 +1,12 @@
 - name: apply_se
-    command: restorecon -RFvv /opt/librenms
+  command: restorecon -RFvv /opt/librenms
 - name: snmpd
-    service:
-      name: snmpd
-      state: restarted
-      enabled: yes
+  service:
+    name: snmpd
+    state: restarted
+    enabled: yes
 - name: php-fpm
-    service:
-      name: php-fpm
-      state: restarted
-      enabled: yes
+  service:
+    name: php-fpm
+    state: restarted
+    enabled: yes
