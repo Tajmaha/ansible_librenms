@@ -63,3 +63,11 @@
     owner: librenms
     group: librenms
     mode: '0771'
+- name: lnms command completion
+  cmd: ln -s /opt/librenms/lnms /usr/local/bin/lnms
+- name: copy bashcomplete
+  copy:
+    src: /opt/librenms/misc/lnms-completion.bash
+    dest: /etc/bash_completion.d/
+    remote_src: yes
+    mode: preserve

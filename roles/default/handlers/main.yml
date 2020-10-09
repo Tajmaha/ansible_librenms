@@ -1,5 +1,3 @@
-- name: apply_se
-  command: restorecon -RFvv /opt/librenms
 - name: snmpd
   service:
     name: snmpd

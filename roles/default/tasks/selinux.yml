@@ -3,15 +3,13 @@
     target: '/opt/librenms/html(/.*)?'
     setype: httpd_sys_content_t
     state: present
-  notify:
-    - apply_se
 - name: se logs
   sefcontext:
     target: '/opt/librenms/(logs|rrd|storage)(/.*)?'
     setype: httpd_sys_rw_content_t
     state: present
-  notify:
-    - apply_se
+- name: apply_se
+  command: restorecon -RFvv /opt/librenms
 - name: setsebool
   seboolean: 
     name: httpd_can_sendmail
