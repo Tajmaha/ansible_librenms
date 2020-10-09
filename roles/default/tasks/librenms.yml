@@ -37,6 +37,7 @@
     dest: /etc/logrotate.d/librenms
     remote_src: yes
     mode: preserve
+
 - name: link
   file:
     src: /opt/librenms/lnms
@@ -48,6 +49,7 @@
     dest: /etc/bash_completion.d/
     remote_src: yes
     mode: preserve
+
 - name: create logfile
   file:
     path: /opt/librenms/logs/librenms.log
@@ -63,11 +65,3 @@
     owner: librenms
     group: librenms
     mode: '0771'
-- name: lnms command completion
-  cmd: ln -s /opt/librenms/lnms /usr/local/bin/lnms
-- name: copy bashcomplete
-  copy:
-    src: /opt/librenms/misc/lnms-completion.bash
-    dest: /etc/bash_completion.d/
-    remote_src: yes
-    mode: preserve
